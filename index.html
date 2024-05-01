@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chai/Coffee Counter</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    @font-face {
+        font-family: tiro;
+        src: url(font/tiro.ttf);
+    }
+    *{
+        font-family: tiro;
+    }
+    .counter-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .counter-value {
+      font-size: 36px;
+    }
+    .btn-counter {
+      font-size: 24px;
+      margin: 10px 10px;
+    }
+    .submit{
+        width: 150px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="counter-container">
+        <h2>चहा</h2>
+        <div class="counter-value" id="chai-counter">0</div>
+        <button class="btn btn-primary btn-counter" onclick="increaseCounter('chai')">+ अधिक करा</button>
+        <button class="btn btn-primary btn-counter" onclick="decreaseCounter('chai')">- वजा करा</button>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="counter-container">
+        <h2>कॉफी</h2>
+        <div class="counter-value" id="coffee-counter">0</div>
+        <button class="btn btn-primary btn-counter" onclick="increaseCounter('coffee')">+ अधिक करा</button>
+        <button class="btn btn-primary btn-counter" onclick="decreaseCounter('coffee')">- वजा करा</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-12 text-center">
+      <button class="btn submit btn-primary" onclick="showTotal()">पूर्ण</button>
+      <br><br>
+      <div id="total-counter"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function increaseCounter(type) {
+    var counterElement = document.getElementById(type + '-counter');
+    var currentValue = parseInt(counterElement.innerText);
+    counterElement.innerText = currentValue + 1;
+  }
+
+  function decreaseCounter(type) {
+    var counterElement = document.getElementById(type + '-counter');
+    var currentValue = parseInt(counterElement.innerText);
+    if (currentValue > 0) {
+      counterElement.innerText = currentValue - 1;
+    }
+  }
+
+  function showTotal() {
+    var chaiCount = parseInt(document.getElementById('chai-counter').innerText);
+    var coffeeCount = parseInt(document.getElementById('coffee-counter').innerText);
+    var totalCounterElement = document.getElementById('total-counter');
+    totalCounterElement.innerHTML = "<h3>एकूण चहा: " + chaiCount + "</h3><h3>एकूण कॉफी: " + coffeeCount + "</h3>";
+  }
+</script>
+
+</body>
+</html>
